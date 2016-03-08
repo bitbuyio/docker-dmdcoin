@@ -11,9 +11,10 @@ RUN apt-get update && \
 RUN git clone https://github.com/dmdcoin/diamond.git /tmp/diamond
 WORKDIR /tmp/diamond/src
 RUN mkdir -p /tmp/diamond/src/obj && \
-make -f makefile.unix USE_UPNP=- && \
-cp diamondd /usr/bin/diamondd && \
-rm -rf /tmp/diamond
+make -f makefile.unix USE_UPNP=- 
+#&& \
+#cp diamondd /usr/bin/diamondd && \
+#rm -rf /tmp/diamond
 
 ADD ./bin /usr/local/bin
 RUN chmod a+x /usr/local/bin/*
@@ -22,6 +23,6 @@ ENV HOME /diamond
 VOLUME ["/diamond"]
 EXPOSE 17771 17772
 
-WORKDIR /diamond
+WORKDIR /tmp/diamond/src
 
 CMD ["oneshot"]
