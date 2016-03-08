@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -ex
+
+# This shouldn't be in the Dockerfile or containers built from the same image
+# will have the same credentials.
+if [ ! -e "$HOME/.neucoin/neucoin.conf" ]; then
+    mkdir -p $HOME/.neucoin
+
+    echo "Creating neucoin.conf"
+
+    # Seed a random password for JSON RPC server
+    cat <<EOF > $HOME/.neucoin/neucoin.conf
+rpcuser=neucoinrpc
+rpcpassword=$(dd if=/dev/urandom bs=33 count=1 status=none | base64)
+rpcport=7743
+port=7742
+rpcallowip = 127.0.0.1
+listen=1
+daemon=1
+server=1
+gen=0
+stakegen=1
+EOF
+
+fi
+
+cat $HOME/.neucoin/neucoin.conf
+
+echo "Initialization completed successfully"
