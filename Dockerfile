@@ -1,26 +1,27 @@
 FROM debian
 MAINTAINER BitBuyIO <developer@bitbuy.io>
-LABEL description="running neucoin wallet headless using docker container by http://bit.ly/docker-neucoin"
+LABEL description="running Diamond Coin (DMD) wallet headless using docker container by http://bit.ly/docker-dmdcoin"
 
 RUN apt-get update && \
       DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-      curl ca-certificates wget libboost-filesystem1.55.0 libboost-program-options1.55.0 \
-      libboost-system1.55.0 libboost-thread1.55.0 libdb5.3++ && \
+      curl ca-certificates git build-essential libcurl4-openssl-dev libboost1.55-all-dev libdb5.3++-dev libdb5.3-dev && \
       apt-get clean && \
       rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN wget https://github.com/NeuCoin/neucoin/releases/download/v1.2.0/neucoind_1.2.0_debian_amd64.deb && \
-    dpkg -i neucoind_1.2.0_debian_amd64.deb  && \
-    rm neucoind_1.2.0_debian_amd64.deb
+RUN git clone https://github.com/dmdcoin/diamond.git /usr/src/diamond
+WORKDIR /usr/src/diamond/src
+RUN mkdir -p /usr/src/diamond/src/obj && \
+make -f makefile.unix USE_UPNP=- && \
+cp diamondd /usr/bin && \
+rm -rf /usr/src/diamond
 
 ADD ./bin /usr/local/bin
-
 RUN chmod a+x /usr/local/bin/*
 
-ENV HOME /neucoin
-VOLUME ["/neucoin"]
-EXPOSE 7742 7743
+ENV HOME /diamond
+VOLUME ["/diamond"]
+EXPOSE 17771 17772
 
-WORKDIR /neucoin
+WORKDIR /diamond
 
 CMD ["oneshot"]
