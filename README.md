@@ -1,5 +1,7 @@
 # Docker-neucoin
 
+[![](https://badge.imagelayers.io/bitbuyio/neucoin:latest.svg)](https://imagelayers.io/?images=bitbuyio/neucoin:latest 'Get your own badge on imagelayers.io')
+
 neucoin uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the issuing of neucoin is carried out collectively by the network. neucoin is open-source; its design is public, nobody owns or controls neucoin and everyone can take part. Through many of its unique properties, neucoin allows exciting uses that could not be covered by any previous payment system.
 
 **Usage**
