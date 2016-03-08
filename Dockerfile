@@ -3,8 +3,7 @@ MAINTAINER BitBuyIO <developer@bitbuy.io>
 LABEL description="running neucoin wallet headless using docker container by http://bit.ly/docker-neucoin"
 
 RUN apt-get update && \
-      DEBIAN_FRONTEND=noninteractive apt-get upgrade -y && \
-      apt-get install -y --no-install-recommends \
+      DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
       curl ca-certificates wget libboost-filesystem1.55.0 libboost-program-options1.55.0 \
       libboost-system1.55.0 libboost-thread1.55.0 libdb5.3++ && \
       apt-get clean && \
