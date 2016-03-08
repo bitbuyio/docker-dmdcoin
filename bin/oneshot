@@ -2,8 +2,8 @@
 
 set -ex
 
-# Generate neucoin.conf
-init_neu
+# Generate diamond.conf
+init_dmd
 
 if [ $# -gt 0 ]; then
     args=("$@")
@@ -11,4 +11,4 @@ else
     args=("-rpcallowip=::/0")
 fi
 
-exec neucoind "${args[@]}"
+exec diamondd "${args[@]}"
