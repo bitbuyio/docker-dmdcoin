@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -ex
+
+# This shouldn't be in the Dockerfile or containers built from the same image
+# will have the same credentials.
+if [ ! -e "$HOME/.diamond/diamond.conf" ]; then
+    mkdir -p $HOME/.diamond
+
+    echo "Creating diamond.conf"
+
+    # Seed a random password for JSON RPC server
+    cat <<EOF > $HOME/.diamond/diamond.conf
+rpcuser=dmdcoinrpc
+rpcpassword=$(dd if=/dev/urandom bs=33 count=1 status=none | base64)
+rpcport=17772
+rpcallowip = 127.0.0.1
+listen=0
+daemon=1
+server=1
+EOF
+
+fi
+
+cat $HOME/.diamond/diamond.conf
+
+echo "Initialization completed successfully"
