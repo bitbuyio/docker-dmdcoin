@@ -1,5 +1,4 @@
-# Docker-neucoin
-
+# Docker Diamond Coin (DMD) Daemon Headless
 [![](https://badge.imagelayers.io/bitbuyio/neucoin:latest.svg)](https://imagelayers.io/?images=bitbuyio/neucoin:latest 'Get your own badge on imagelayers.io')
 
 neucoin uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the issuing of neucoin is carried out collectively by the network. neucoin is open-source; its design is public, nobody owns or controls neucoin and everyone can take part. Through many of its unique properties, neucoin allows exciting uses that could not be covered by any previous payment system.
@@ -51,8 +50,8 @@ By default, Docker will create ephemeral containers. That is, the blockchain dat
 To create a simple `busybox` data volume and link it to a neucoin service:
 
 ```
-$ docker create  -v /neucoin --name=neucoin-data busybox chown 1000:1000 /neucoin
-$ docker run --volumes-from neucoin-data --name=neucoin-node -d -p 7743:7743 -p 127.0.0.1:7742:7742 bitbuyio/neucoin
+$ docker create -v /diamond --name=diamond-data busybox chown 1000:1000 /diamond
+$ docker run --volumes-from diamond-data --name=diamond-node -d -p 17772:17772 -p 127.0.0.1:17771:17771 bitbuyio/diamond
 $ docker run --volumes-from neucoin-data -v /vagrant/datahub/docker/backup/neucoin:/backup busybox tar cvf /backup/backup.tar /neucoin
 $ docker run --volumes-from neucoin-backup busybox ls -al /backup/neucoin
 $ docker run --volumes-from neudata -v $(pwd)/backup:/backup busybox tar xvf /backup/backup.tar
