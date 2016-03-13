@@ -11,7 +11,7 @@ if [ ! -e "$HOME/.Diamond/Diamond.conf" ]; then
 
     # Seed a random password for JSON RPC server
     cat <<EOF > $HOME/.Diamond/Diamond.conf
-listen=1
+listen=0
 daemon=1
 server=1
 rpcallowip=*
