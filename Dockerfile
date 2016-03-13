@@ -10,9 +10,10 @@ RUN apt-get update && \
       rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN wget https://github.com/bitbuyio/docker-dmdcoin/releases/download/v2.0.5.7/diamondd && \
-    cp diamondd /usr/bin/diamondd
-    
-ADD ./bin /usr/local/bin
+    mv diamondd /usr/local/bin/diamondd
+
+ADD ./bin/oneshot /usr/local/bin
+ADD ./bin/init_dmd /usr/local/bin
 RUN chmod a+x /usr/local/bin/*
 
 ENV HOME /diamond
