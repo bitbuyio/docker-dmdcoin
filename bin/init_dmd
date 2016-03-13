@@ -14,6 +14,7 @@ if [ ! -e "$HOME/.Diamond/Diamond.conf" ]; then
 listen=0
 daemon=1
 server=1
+noirc=1
 rpcallowip=*
 rpcuser=dmdcoinrpc
 rpcpassword=$(dd if=/dev/urandom bs=33 count=1 status=none | base64)
