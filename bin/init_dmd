@@ -20,10 +20,6 @@ rpcuser=dmdcoinrpc
 rpcpassword=$(dd if=/dev/urandom bs=33 count=1 status=none | base64)
 rpcport=17772
 rpcconnect=127.0.0.1
-addnode=193.68.21.19
-addnode=54.191.208.14
-addnode=54.255.133.30
-addnode=54.86.164.216
 EOF
 
 fi
