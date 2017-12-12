@@ -14,7 +14,7 @@ RUN apt-get update && \
 RUN cd /usr/local/bin && \
     wget https://github.com/DMDcoin/Diamond/releases/download/3.0.0.13/Linux.3-0-0-13.tar.gz && \
     tar -xzf Linux.3-0-0-13.tar.gz && \
-    rm tar -xzf Linux.3-0-0-13.tar.gz
+    rm Linux.3-0-0-13.tar.gz
 
 ADD ./bin/oneshot /usr/local/bin
 ADD ./bin/init_dmd /usr/local/bin
