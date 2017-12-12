@@ -4,7 +4,8 @@ LABEL description="running Diamond Coin (DMD) wallet headless using docker conta
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    curl ca-certificates wget software-properties-common libboost-all-dev && \
+    nano less curl ca-certificates wget software-properties-common libboost-filesystem1.58.0 \
+    libboost-program-options1.58.0 libboost-system1.58.0 libboost-thread1.58.0 && \
     add-apt-repository ppa:bitcoin/bitcoin && \
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y libdb4.8-dev libdb4.8++-dev && \

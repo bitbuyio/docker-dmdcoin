@@ -8,13 +8,22 @@ diamond uses peer-to-peer technology to operate with no central authority or ban
 To start a diamondd instance running the latest version (`3.0.0.13`):
 
 ```
-$ docker run --name diamond-node bitbuyio/diamond
+$ docker run --name=diamond-data -v /diamond alpine:latest chown 1000:1000 /diamond
+
+
+$ docker run -d \
+  --restart=always \
+  --volumes-from diamond-data \
+  --name diamond-node \
+  -p 17771:17771 \
+  -p 17772:17772 \
+  bitbuyio/diamond
 ```
 
 To run a diamond container in the background, pass the `-d` option to `docker run`:
 
 ```
-$ docker run -d --name diamond-node bitbuyio/diamond
+$ docker run -d --volumes-from diamond-data  -p 17771:17771 -p 17772:17772 --name diamond-node bitbuyio/diamond
 ```
 
 Once you have a diamond service running in the background, you can show running containers:
