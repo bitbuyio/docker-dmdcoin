@@ -1,23 +1,23 @@
 # Docker Diamond Coin (DMD) Daemon Headless
-[![](https://badge.imagelayers.io/bitbuyio/neucoin:latest.svg)](https://imagelayers.io/?images=bitbuyio/neucoin:latest 'Get your own badge on imagelayers.io')
+[![](https://badge.imagelayers.io/bitbuyio/diamond:latest.svg)](https://imagelayers.io/?images=bitbuyio/diamond:latest 'Get your own badge on imagelayers.io')
 
-neucoin uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the issuing of neucoin is carried out collectively by the network. neucoin is open-source; its design is public, nobody owns or controls neucoin and everyone can take part. Through many of its unique properties, neucoin allows exciting uses that could not be covered by any previous payment system.
+diamond uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the issuing of diamond is carried out collectively by the network. diamond is open-source; its design is public, nobody owns or controls diamond and everyone can take part. Through many of its unique properties, diamond allows exciting uses that could not be covered by any previous payment system.
 
 **Usage**
 
-To start a neucoind instance running the latest version (`1.2.0`):
+To start a diamondd instance running the latest version (`3.0.0.13`):
 
 ```
-$ docker run --name neucoin-node bitbuyio/neucoin
+$ docker run --name diamond-node bitbuyio/diamond
 ```
 
-To run a neucoin container in the background, pass the `-d` option to `docker run`:
+To run a diamond container in the background, pass the `-d` option to `docker run`:
 
 ```
-$ docker run -d --name neucoin-node bitbuyio/neucoin
+$ docker run -d --name diamond-node bitbuyio/diamond
 ```
 
-Once you have a neucoin service running in the background, you can show running containers:
+Once you have a diamond service running in the background, you can show running containers:
 
 ```
 $ docker ps
@@ -26,35 +26,35 @@ $ docker ps
 Or view the logs of a service:
 
 ```
-$ docker logs -f neucoin-node
+$ docker logs -f diamond-node
 ```
 
 To stop and restart a running container:
 
 ```
-$ docker stop neucoin-node
-$ docker start neucoin-node
+$ docker stop diamond-node
+$ docker start diamond-node
 ```
 
-To exec neucoind cmd into a running container:
+To exec diamondd cmd into a running container:
 
 ```
-$ docker exec -it neucoin-node neucoind getinfo
-$ docker exec -it neucoin-node neucoind stop
+$ docker exec -it diamond-node diamondd getinfo
+$ docker exec -it diamond-node diamondd stop
 ```
 
 **Data Volumes**
 
-By default, Docker will create ephemeral containers. That is, the blockchain data will not be persisted if you create a new neucoin container.
+By default, Docker will create ephemeral containers. That is, the blockchain data will not be persisted if you create a new diamond container.
 
-To create a simple `busybox` data volume and link it to a neucoin service:
+To create a simple `busybox` data volume and link it to a diamond service:
 
 ```
 $ docker create -v /diamond --name=diamond-data busybox chown 1000:1000 /diamond
 $ docker run --volumes-from diamond-data --name=diamond-node -d -p 17772:17772 -p 127.0.0.1:17771:17771 bitbuyio/diamond
-$ docker run --volumes-from neucoin-data -v /vagrant/datahub/docker/backup/neucoin:/backup busybox tar cvf /backup/backup.tar /neucoin
-$ docker run --volumes-from neucoin-backup busybox ls -al /backup/neucoin
+$ docker run --volumes-from diamond-data -v /vagrant/datahub/docker/backup/diamond:/backup busybox tar cvf /backup/backup.tar /diamond
+$ docker run --volumes-from diamond-backup busybox ls -al /backup/diamond
 $ docker run --volumes-from neudata -v $(pwd)/backup:/backup busybox tar xvf /backup/backup.tar
-$ docker run --volumes-from neudata busybox ls -al /neucoin/.neucoin
+$ docker run --volumes-from neudata busybox ls -al /diamond/.diamond
 
 ```
