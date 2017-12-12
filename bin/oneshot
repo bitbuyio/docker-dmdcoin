@@ -5,6 +5,7 @@ set -ex
 # Generate diamond.conf
 init_dmd
 
+
 if [ $# -gt 0 ]; then
     args=("$@")
 else

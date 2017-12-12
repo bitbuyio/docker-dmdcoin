@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM phusion/baseimage:0.9.22
 MAINTAINER BitBuyIO <developer@bitbuy.io>
 LABEL description="running Diamond Coin (DMD) wallet headless using docker container by http://bit.ly/docker-dmdcoin"
 
@@ -17,14 +17,22 @@ RUN cd /usr/local/bin && \
     tar -xzf Linux.3-0-0-13.tar.gz && \
     rm Linux.3-0-0-13.tar.gz
 
+ENV HOME /diamond
 ADD ./bin/oneshot /usr/local/bin
 ADD ./bin/init_dmd /usr/local/bin
+#ADD ./bin/start /usr/local/bin
 RUN chmod a+x /usr/local/bin/*
 
-ENV HOME /diamond
+#RUN mkdir /etc/service/dmdcoin
+#COPY ./bin/start /etc/service/dmdcoin/run
+#RUN chmod +x /etc/service/dmdcoin/run
+
 VOLUME ["/diamond"]
 EXPOSE 17771 17772
 
 WORKDIR /diamond
 
+
+#CMD ["start"]
+CMD ["/sbin/my_init"]
 CMD ["oneshot"]
